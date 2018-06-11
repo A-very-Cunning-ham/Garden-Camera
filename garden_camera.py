@@ -1,10 +1,12 @@
+# Avery Cunningham
+# Smart Garden Camera System
+# Adapted from http://www.instructables.com/id/Control-Raspberry-Pi-GPIO-With-Amazon-Echo-and-Pyt/
+
+
 from flask import Flask
 from flask_ask import Ask, statement, convert_errors
 import RPi.GPIO as GPIO
 import logging
-
-import picamera
-import numpy as np
 
 from signal import pause
 from time import sleep
@@ -27,7 +29,7 @@ ask = Ask(app, '/')
 
 logging.getLogger("flask_ask").setLevel(logging.DEBUG)
 
-@ask.intent('GPIOControlIntent', mapping={'status': 'status', 'pin': 'pin'})
+@ask.intent('GPIOControlIntent', mapping={'status': 'status', 'pin': 'pin'}) # Take in pin number and change state on GPIO to match
 def gpio_control(status, pin):
 
     try:
@@ -45,15 +47,16 @@ def gpio_control(status, pin):
 
 @ask.intent('PlantHealth')
 def plantHealth():
-    healthValue = check_output("python3 cameraSum.py", shell=True)
+    healthValue = check_output("python3 cameraSum.py", shell=True) # Call the CameraSum.py function and retreive its stdout
 
-    if(float(healthValue) > float(lastValue)):
+    if(float(healthValue) > float(lastValue)): #Determine if health has increased or decreased
         delta = "up"
     else:
         delta = "down"
-    
 
-    diff = str(abs(float(healthValue)-float(lastValue)))
+    diff = str(abs(float(healthValue)-float(lastValue))) #Determine magnitude of change
+    
+    lastValue = healthValue
 
     return statement('Plant health percentage {}%. That is {} {} from last time you checked'.format(healthValue, delta, diff))
 
