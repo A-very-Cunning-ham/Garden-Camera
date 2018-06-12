@@ -47,14 +47,16 @@ def gpio_control(status, pin):
 
 @ask.intent('PlantHealth')
 def plantHealth():
+    global lastValue
     healthValue = check_output("python3 cameraSum.py", shell=True) # Call the CameraSum.py function and retreive its stdout
+    healthValue = float(healthValue) # Convert from string to float
 
-    if(float(healthValue) > float(lastValue)): #Determine if health has increased or decreased
+    if(float(healthValue) > lastValue): #Determine if health has increased or decreased
         delta = "up"
     else:
         delta = "down"
 
-    diff = str(abs(float(healthValue)-float(lastValue))) #Determine magnitude of change
+    diff = str(abs(healthValue-lastValue)) #Determine magnitude of change
     
     lastValue = healthValue
 
