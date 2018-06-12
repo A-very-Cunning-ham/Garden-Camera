@@ -12,6 +12,7 @@ from signal import pause
 from time import sleep
 
 from subprocess import check_output
+import os
 
 lastValue = 0
 
@@ -43,6 +44,16 @@ def gpio_control(status, pin):
     if status in ['off', 'low']:    GPIO.output(pinNum, GPIO.LOW)
 
     return statement('Turning pin {} {}'.format(pin, status))
+
+
+@ask.intent('pictureIntent', mapping={'picture': 'picture'}) # Take in picture type and call captureUpload.py function
+
+    subprocess.Popen(['python3', 'captureUpload.py', picture]) # call function to capture and uplaod image
+    
+    if not picture: # if no picture type is defined 
+        return statement('No image captured, please specify NDVI or NIR')
+
+    return statement('Uploading {} image'.format(picture))
 
 
 @ask.intent('PlantHealth')
