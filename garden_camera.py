@@ -11,7 +11,7 @@ import logging
 from signal import pause
 from time import sleep
 
-from subprocess import check_output
+import subprocess
 import os
 
 lastValue = 0
@@ -47,10 +47,11 @@ def gpio_control(status, pin):
 
 
 @ask.intent('pictureIntent', mapping={'picture': 'picture'}) # Take in picture type and call captureUpload.py function
-
+def pictureIntent(picture):
+    picture = picture.upper()
     subprocess.Popen(['python3', 'captureUpload.py', picture]) # call function to capture and uplaod image
-    
-    if not picture: # if no picture type is defined 
+
+    if not picture: # if no picture type is defined
         return statement('No image captured, please specify NDVI or NIR')
 
     return statement('Uploading {} image'.format(picture))
@@ -59,7 +60,7 @@ def gpio_control(status, pin):
 @ask.intent('PlantHealth')
 def plantHealth():
     global lastValue
-    healthValue = check_output("python3 cameraSum.py", shell=True) # Call the CameraSum.py function and retreive its stdout
+    healthValue = subprocess.check_output("python3 cameraSum.py", shell=True) # Call the CameraSum.py function and retreive its stdout
     healthValue = float(healthValue) # Convert from string to float
 
     if(float(healthValue) > lastValue): #Determine if health has increased or decreased
