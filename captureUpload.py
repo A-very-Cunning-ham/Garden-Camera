@@ -1,5 +1,5 @@
 # Avery Cunningham
-# Drive upload adapted from API example code found at
+# Drive upload adapted from API example code found at:
 # https://developers.google.com/drive/api/v3
 
 from __future__ import print_function
@@ -18,7 +18,7 @@ from signal import pause
 import time
 import sys
 
-def upload(filePath):
+def upload(filePath): # This function accepts a file path of a saved image and uploads it to a Google Drive folder
     SCOPES = 'https://www.googleapis.com/auth/drive'
     store = file.Storage('credentials.json')
     creds = store.get()
@@ -42,8 +42,8 @@ def upload(filePath):
         if res:
             print('Uploaded "%s" (%s)' % (filename, res['mimeType']))
 
-def main():
-    arg = sys.argv[1]
+def main(): # This function captures a NIR image and uploads it processed as a NDVI or raw to Google Drive using upload ()
+    arg = sys.argv[1] # Determine command line arguemnts used while running this command. 
 
     with picamera.PiCamera() as camera:
         camera.resolution = (320, 240)
