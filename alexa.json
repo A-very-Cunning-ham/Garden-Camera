@@ -1,0 +1,71 @@
+{
+    "interactionModel": {
+        "languageModel": {
+            "invocationName": "garden camera",
+            "intents": [
+                {
+                    "name": "AMAZON.FallbackIntent",
+                    "samples": []
+                },
+                {
+                    "name": "AMAZON.CancelIntent",
+                    "samples": []
+                },
+                {
+                    "name": "AMAZON.HelpIntent",
+                    "samples": []
+                },
+                {
+                    "name": "AMAZON.StopIntent",
+                    "samples": []
+                },
+                {
+                    "name": "GPIOControlIntent",
+                    "slots": [
+                        {
+                            "name": "pin",
+                            "type": "AMAZON.NUMBER"
+                        },
+                        {
+                            "name": "status",
+                            "type": "AMAZON.LITERAL"
+                        }
+                    ],
+                    "samples": [
+                        "turn pin {pin} {on|status}",
+                        "turn pin {pin} {off|status}"
+                    ]
+                },
+                {
+                    "name": "PlantHealth",
+                    "slots": [],
+                    "samples": [
+                        "plants",
+                        "how are my vegetables",
+                        "how is my garden doing",
+                        "how are my plants doing",
+                        "What is the health of my plants"
+                    ]
+                },
+                {
+                    "name": "pictureIntent",
+                    "slots": [
+                        {
+                            "name": "picture",
+                            "type": "AMAZON.LITERAL"
+                        }
+                    ],
+                    "samples": [
+                        "Show me my garden in {NIR|picture}",
+                        "Show me my garden in {NDVI|picture}",
+                        "Show me a {NIR|picture} picture",
+                        "Show me a {NDVI|picture} picture",
+                        "Take a {NIR|picture} picture",
+                        "Take a {NDVI|picture} picture"
+                    ]
+                }
+            ],
+            "types": []
+        }
+    }
+}
