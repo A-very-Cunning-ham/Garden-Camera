@@ -1,5 +1,5 @@
 # Garden Camera :seedling:
-This is an IoT project that allows Amazon Alexa to control a smart gardening system with infrared image plant health monitoring.
+This is an IoT project that allows Amazon Alexa to control a smart gardening system equipped with infrared image plant health monitoring.
 ## Operation
 * Turn any device connected to your Raspberry Pi on or off by saying "turn pin {pin} {status}", where {pin} is a Broadcom pin number and {status} is "on" or "off". For example turning a sprinkler system connected to pin 17 on would be accomplished by saying "Alexa, open Garden Camera and turn pin 17 on". This will work for sprinklers, lights, fans, pumps, speakers, and many more devices.
 * Determine the health of your garden by assessing the photosynthesis levels using the Pi NoIr Camera. With a blue filter installed over your camera and pointed in the direction of your plants simply say "Alexa, open Garden Camera and tell me about my plants". This will give you a percentage and change from the last time the intent was called.
