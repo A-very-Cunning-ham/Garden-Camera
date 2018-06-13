@@ -32,4 +32,5 @@ To get this running with your own system you will need to follow these steps. Th
       Make sure to update the file path to match your working directory.
 11. Test your skill in the Alexa Console.
 
-
+### Acknowledgements
+Parts of this project are adapted from PatrickD126's Instructable at http://www.instructables.com/id/Control-Raspberry-Pi-GPIO-With-Amazon-Echo-and-Pyt/
